@@ -1,13 +1,10 @@
 {
   "dependencies": {
-<<<<<<< HEAD
     "dotenv": "^16.0.3",
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
-=======
+    "nodemon": "^2.0.20",
     "yarn": "^1.22.19"
->>>>>>> 82249c37aed65793c6c09c4268345a00b2e1e9cb
   }
 }
