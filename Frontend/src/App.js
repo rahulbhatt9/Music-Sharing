@@ -1,6 +1,10 @@
+import Header from "./components/Header"
+
 function App() {
     return (
-        <h1>Music Review</h1>
+        <div className="App">
+            <Header />
+        </div>
     )
 }
 
