@@ -5,16 +5,52 @@ const Bootcamp = require('../models/Bootcamp')
 // @access    Public 
 exports.getBootcamps = async (req, res, next) => {
     try {
-        const bootcamps = await Bootcamp.find();
+        let query;
+
+        // Copy req.query
+        const reqQuery = { ...req.query };
+
+        // Fields to exclude
+        const removeFields = ['select', 'sort']
+
+        // Loop over removeFields and delete from reqQuery
+        removeFields.forEach(param => delete reqQuery[param]);
+
+        console.log(reqQuery);
+
+        // Create Query String
+        let queryStr = JSON.stringify(reqQuery);
+
+        // Create operatators {$dt, $gte, etc.}
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+        console.log(queryStr);
+
+        // Finding resource
+        query = Bootcamp.find(JSON.parse(queryStr));
+
+        // Select Fields
+        if (req.query.select) {
+            const fields = req.query.select.split(',').join(' ');
+            query = query.select(fields);
+        }
+
+        // Sort
+        if (req.query.sort) {
+            const sortBy = req.query.select.split(',').join(' ');
+            query = query.sort(sortBy);
+        } else {
+            query = query.sort('-createdat');
+        }
+
+        // Executing query
+        const bootcamps = await query;
         res.status(200).json({
             success: true,
             count: bootcamps.length,
             data: bootcamps
         });
     } catch (error) {
-        res.status(400).json({
-            success: false
-        });
+        next(error);
     }
 }
 
@@ -34,9 +70,10 @@ exports.getBootcamp = async (req, res, next) => {
             data: bootcamp
         });
     } catch (error) {
-        res.status(400).json({
-            success: false
-        });
+        // res.status(400).json({
+        //     success: false
+        // });
+        next(error);
     }
 }
 
@@ -52,9 +89,7 @@ exports.createBootcamp = async (req, res, next) => {
             data: bootcamp
         });
     } catch (error) {
-        res.status(400).json({
-            success: false
-        })
+        next(error);
     }
 }
 
@@ -78,9 +113,7 @@ exports.updateBootcamp = async (req, res, next) => {
             data: bootcamp
         })
     } catch (error) {
-        res.status(400).json({
-            success: false
-        })
+        next(error);
     }
 }
 
@@ -101,8 +134,6 @@ exports.deleteBootcamp = async (req, res, next) => {
             data: {}
         })
     } catch (error) {
-        res.status(400).json({
-            success: false
-        })
+        next(error);
     }
 }
