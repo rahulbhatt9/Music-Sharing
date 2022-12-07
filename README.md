@@ -10,3 +10,6 @@ Rn, we allow users to rate songs on a scale of 1-10, we could moving forward ext
 not only have the ability to give numerical feedback, but also verbal feedback. Our website is supposed to take an average across all user ratings and 
 display that at the top so future users are aware of prior ratings of a song.
 
+Rn, we were not able to connect the frontend and backend codes together to get the product working, this is what we plan on working on in the future,
+we were still able to make commits to both ends and push to the main branch. We also plan on adding further functionalities like setting scroll bar / drop-down menus which enable user account logins, etc.
+
