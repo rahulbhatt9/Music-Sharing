@@ -6,7 +6,7 @@ const dotenv = require('dotenv')
 dotenv.config({path: './config/config.env'});
 
 // Load models
-const Bootcamp = require('./models/Bootcamp')
+const Song = require('./models/Song')
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, {
@@ -17,12 +17,12 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 // Read JSON files
-const bootcamps = JSON.parse(fs.readFileSync(`${__dirname}/_data/bootcamps.json`, 'utf-8'));
+const songs = JSON.parse(fs.readFileSync(`${__dirname}/_data/songs.json`, 'utf-8'));
 
 // Import into DB
 const importData = async () => {
     try {
-        await Bootcamp.create(bootcamps);
+        await Song.create(songs);
         process.exit();
     } catch (error) {
         console.error(err);
@@ -32,7 +32,7 @@ const importData = async () => {
 // Delete data
 const deleteData = async () => {
     try {
-        await Bootcamp.deleteMany();
+        await Song.deleteMany();
         process.exit();
     } catch (error) {
         console.error(err);

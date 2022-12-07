@@ -1,0 +1,34 @@
+[
+	{
+		"_id": "5d713995b721c3bb38c1f5d0",
+		"user": "5d7a514b5d2c12c7449be045",
+		"name": "Bohemian Rhapsody",
+		"description": "Bohemian Rhapsody is by Queen and on the album A Night at the Opera.",
+		"artist": "Queen",
+		"averageRating": 9.4
+	},
+	{
+		"_id": "5d713a66ec8f2b88b8f830b8",
+		"user": "5d7a514b5d2c12c7449be046",
+		"name": "Hey Jude",
+		"description": "Hey Jude is by The Beatles and was released as a single.",
+		"artist": "The Beatles",
+		"averageRating": 8.7
+	},
+	{
+		"_id": "5d725a037b292f5f8ceff787",
+		"user": "5c8a1d5b0190b214360dc031",
+		"name": "Nights",
+		"description": "Nights is by Frank Ocean and on the album Blonde.",
+		"artist": "Frank Ocean",
+		"averageRating": 8.3
+	},
+	{
+		"_id": "5d725a1b7b292f5f8ceff788",
+		"user": "5c8a1d5b0190b214360dc032",
+		"name": "Good Game",
+		"description": "Good Game is by Dominic Fike and on the album What Could Possibly Go Wrong.",
+		"artist": "Dominic Fike",
+		"averageRating": 7.6
+	}
+]

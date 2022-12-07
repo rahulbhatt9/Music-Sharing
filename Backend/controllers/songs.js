@@ -1,9 +1,9 @@
-const Bootcamp = require('../models/Bootcamp')
+const Song = require('../models/Song')
 
-// @desc      Get all bootcamps
-// @route     GET /api/v1/bootcamps
+// @desc      Get all songs
+// @route     GET /api/v1/songs
 // @access    Public 
-exports.getBootcamps = async (req, res, next) => {
+exports.getSongs = async (req, res, next) => {
     try {
         let query;
 
@@ -26,7 +26,7 @@ exports.getBootcamps = async (req, res, next) => {
         console.log(queryStr);
 
         // Finding resource
-        query = Bootcamp.find(JSON.parse(queryStr));
+        query = Song.find(JSON.parse(queryStr));
 
         // Select Fields
         if (req.query.select) {
@@ -43,31 +43,31 @@ exports.getBootcamps = async (req, res, next) => {
         }
 
         // Executing query
-        const bootcamps = await query;
+        const songs = await query;
         res.status(200).json({
             success: true,
-            count: bootcamps.length,
-            data: bootcamps
+            count: songs.length,
+            data: songs
         });
     } catch (error) {
         next(error);
     }
 }
 
-// @desc      Get single bootcamp
-// @route     GET /api/v1/bootcamps/:id
+// @desc      Get single song
+// @route     GET /api/v1/songs/:id
 // @access    Public 
-exports.getBootcamp = async (req, res, next) => {
+exports.getSong = async (req, res, next) => {
     try {
-        const bootcamp = await Bootcamp.findById(req.params.id);
-        if (!bootcamp) {
+        const song = await Song.findById(req.params.id);
+        if (!song) {
             return res.status(400).json({
                 success: false
             });
         }
         res.status(200).json({
             success: true,
-            data: bootcamp
+            data: song
         });
     } catch (error) {
         // res.status(400).json({
@@ -77,54 +77,54 @@ exports.getBootcamp = async (req, res, next) => {
     }
 }
 
-// @desc      Create new bootcamp
-// @route     POST /api/v1/bootcamps
+// @desc      Create new song
+// @route     POST /api/v1/songs
 // @access    Private
-exports.createBootcamp = async (req, res, next) => {
+exports.createSong = async (req, res, next) => {
     try {
-        const bootcamp = await Bootcamp.create(req.body);
+        const song = await Song.create(req.body);
 
         res.status(201).json({
             success: true,
-            data: bootcamp
+            data: song
         });
     } catch (error) {
         next(error);
     }
 }
 
-// @desc      Update new bootcamp
-// @route     PUT /api/v1/bootcamps/:id
+// @desc      Update new song
+// @route     PUT /api/v1/songs/:id
 // @access    Private
-exports.updateBootcamp = async (req, res, next) => {
+exports.updateSong = async (req, res, next) => {
     try {
-        const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
+        const song = await Song.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
         });
     
-        if (!bootcamp) {
+        if (!song) {
             return res.status(400).json({
                 success: false
             })
         }
         res.status(200).json({
             success: true,
-            data: bootcamp
+            data: song
         })
     } catch (error) {
         next(error);
     }
 }
 
-// @desc      Delete bootcamp
-// @route     DELETE /api/v1/bootcamps/:id
+// @desc      Delete song
+// @route     DELETE /api/v1/songs/:id
 // @access    Private
-exports.deleteBootcamp = async (req, res, next) => {
+exports.deleteSong = async (req, res, next) => {
     try {
-        const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
+        const song = await Song.findByIdAndDelete(req.params.id);
     
-        if (!bootcamp) {
+        if (!song) {
             return res.status(400).json({
                 success: false
             })
