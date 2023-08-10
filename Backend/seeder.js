@@ -25,7 +25,7 @@ const importData = async () => {
         await Song.create(songs);
         process.exit();
     } catch (error) {
-        console.error(err);
+        console.error(error);
     }
 }
 
